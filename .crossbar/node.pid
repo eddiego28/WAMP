@@ -1,0 +1,22 @@
+{
+    "pid": 34840, 
+    "argv": [
+        "crossbar", 
+        "start", 
+        "--cbdir", 
+        "C:\\Users\\ededi\\Documents\\PROYECTOS\\WAMP\\.crossbar"
+    ], 
+    "options": {
+        "debug_lifecycle": false, 
+        "debug_programflow": false, 
+        "command": "start", 
+        "color": false, 
+        "loglevel": "info", 
+        "logformat": "standard", 
+        "logdir": null, 
+        "logtofile": false, 
+        "cbdir": "C:\\Users\\ededi\\Documents\\PROYECTOS\\WAMP\\.crossbar", 
+        "config": "config.json", 
+        "shutdownafter": null
+    }
+}

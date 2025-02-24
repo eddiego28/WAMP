@@ -1,0 +1,7 @@
+2025-02-24 20:44:48,769 - DEBUG - Using selector: SelectSelector
+2025-02-24 20:44:52,403 - INFO - Mensaje enviado en com.ads.midshmi.topic: {'name': 'Mensaje 1', 'fields': {'tipo': 'J', 'identificador': 'A123', 'timestamp': '2025-02-24T14:00:00Z', 'posicion': "{'lat': 40.7128, 'lon': -74.006}", 'velocidad': 750, 'altitud': 10000, 'estado': 'operativo'}}
+2025-02-24 20:45:32,313 - INFO - Mensaje enviado en com.ads.midshmi.topic: {'name': 'Mensaje 1', 'fields': {'tipo': 'J', 'identificador': 'A123', 'timestamp': '2025-02-24T14:00:00Z', 'posicion': "{'lat': 40.7128, 'lon': -74.006}", 'velocidad': 750, 'altitud': 10000, 'estado': 'operativo'}}
+2025-02-24 20:46:07,450 - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-2' coro=<JSONPublisher.onJoin() done, defined at C:\Users\ededi\Documents\PROYECTOS\WAMP\publisher\pubGUI.py:37> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+2025-02-24 20:46:07,450 - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-5' coro=<JSONPublisher.onJoin() done, defined at C:\Users\ededi\Documents\PROYECTOS\WAMP\publisher\pubGUI.py:37> wait_for=<Future pending cb=[Task.task_wakeup()]>>

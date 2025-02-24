@@ -6,6 +6,18 @@ import logging
 import sys
 from autobahn.asyncio.wamp import ApplicationSession, ApplicationRunner
 
+# Configurar logging para que escriba tanto en consola como en un archivo.
+log_format = '%(asctime)s - %(levelname)s - %(message)s'
+logging.basicConfig(
+    level=logging.DEBUG,
+    format=log_format,
+    handlers=[
+        logging.StreamHandler(),  # Muestra en consola
+        logging.FileHandler("messages.log", encoding="utf-8")  # Guarda en el archivo sistema.log
+    ]
+)
+
+
 # Para Windows: forzar el uso del loop selector (evita problemas con el proactor)
 if sys.platform.startswith('win'):
     asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
@@ -56,5 +68,6 @@ def send_message_now(topic, message, delay=0):
         if delay > 0:
             await asyncio.sleep(delay)
         global_session.publish(topic, message)
+        logging.info("Mensaje enviado en %s: %s", topic, message)
         print("Mensaje enviado en", topic, ":", message)
     asyncio.run_coroutine_threadsafe(_send(), global_loop)
