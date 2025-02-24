@@ -1,0 +1,32 @@
+{
+    "messages": [
+        {
+            "name": "Mensaje 1",
+            "active": true,
+            "delay": 2,
+            "fields": {
+                "tipo": "J",
+                "identificador": "A123",
+                "timestamp": "2025-02-24T14:00:00Z",
+                "posicion": {"lat": 40.7128, "lon": -74.0060},
+                "velocidad": 750,
+                "altitud": 10000,
+                "estado": "operativo"
+            }
+        },
+        {
+            "name": "Mensaje 2",
+            "active": false,
+            "delay": 5,
+            "fields": {
+                "tipo": "K",
+                "identificador": "B456",
+                "timestamp": "2025-02-24T14:00:05Z",
+                "posicion": {"lat": 34.0522, "lon": -118.2437},
+                "velocidad": 600,
+                "altitud": 12000,
+                "estado": "alerta"
+            }
+        }
+    ]
+}

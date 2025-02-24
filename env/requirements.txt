@@ -1,0 +1,10 @@
+git+https://github.com/ethereum/eth-abi.git@master#v4.0.0
+
+# git+https://github.com/ethereum/eth-account.git#v0.8.0
+git+https://github.com/crossbario/eth-account.git@fix-215#egg=eth-account
+
+parsimonious>=0.9.0,<0.10.0
+git+https://github.com/ethereum/web3.py.git#v6.0.0-beta.9
+autobahn[twisted,xbr,serialization]>=23.1.1
+zlmdb>=23.1.1
+argon2_cffi>=21.3.0

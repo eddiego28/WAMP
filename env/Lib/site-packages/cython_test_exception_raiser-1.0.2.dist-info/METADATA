@@ -1,0 +1,25 @@
+Metadata-Version: 2.1
+Name: cython-test-exception-raiser
+Version: 1.0.2
+Summary: A trivial extension that just raises an exception.
+Home-page: https://github.com/twisted/cython-test-exception-raiser
+Author: Twisted Matrix Laboratories
+Author-email: twisted-python@twistedmatrix.com
+Maintainer: Thomas Grainger
+Maintainer-email: cython-test-exception-raiser@graingert.co.uk
+License: MIT
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Description-Content-Type: text/x-rst
+License-File: LICENSE
+
+A trivial extension that just raises an exception.
+See L{twisted.test.test_failure.test_failureConstructionWithMungedStackSucceeds}.
+
+

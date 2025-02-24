@@ -1,0 +1,40 @@
+{
+  "link16_messages": [
+    {
+      "tipo": "J",
+      "identificador": "A123",
+      "timestamp": "2025-02-24T14:00:00Z",
+      "posicion": {
+        "lat": 40.7128,
+        "lon": -74.0060
+      },
+      "velocidad": 750,
+      "altitud": 10000,
+      "estado": "operativo"
+    },
+    {
+      "tipo": "J",
+      "identificador": "B456",
+      "timestamp": "2025-02-24T14:00:05Z",
+      "posicion": {
+        "lat": 34.0522,
+        "lon": -118.2437
+      },
+      "velocidad": 600,
+      "altitud": 12000,
+      "estado": "operativo"
+    },
+    {
+      "tipo": "K",
+      "identificador": "C789",
+      "timestamp": "2025-02-24T14:00:10Z",
+      "posicion": {
+        "lat": 51.5074,
+        "lon": -0.1278
+      },
+      "velocidad": 500,
+      "altitud": 15000,
+      "estado": "alerta"
+    }
+  ]
+}

@@ -1,0 +1,3 @@
+git+https://github.com/ethereum/eth-abi.git@master#v4.0.0
+git+https://github.com/crossbario/eth-account.git@fix-215#egg=eth-account
+git+https://github.com/ethereum/web3.py.git#v6.0.0-beta.9

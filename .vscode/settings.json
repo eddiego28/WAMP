@@ -1,0 +1,11 @@
+{
+    "json.schemas": [
+    {
+        "fileMatch": [
+            "/config.json",
+            "/.config.json"
+        ],
+        "url": "https://raw.githubusercontent.com/crossbario/crossbar/master/crossbar.json"
+    }
+],
+}
