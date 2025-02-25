@@ -1,3 +1,0 @@
-2025-02-24 20:41:12,981 - DEBUG - Using selector: SelectSelector
-2025-02-24 20:41:59,360 - ERROR - Task was destroyed but it is pending!
-task: <Task pending name='Task-2' coro=<JSONPublisher.onJoin() done, defined at C:\Users\ededi\Documents\PROYECTOS\WAMP\publisher\pubGUI.py:35> wait_for=<Future pending cb=[Task.task_wakeup()]>>

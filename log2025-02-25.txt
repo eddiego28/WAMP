@@ -1,0 +1,111 @@
+{
+  "timestamp": "2025-02-25 13:04:34",
+  "header": "Stimulus message",
+  "message": {
+    "name": "Mensaje 1",
+    "fields": {
+      "tipo": "J",
+      "identificador": "A123",
+      "timestamp": "2025-02-24T14:00:00Z",
+      "posicion": "{'lat': 40.7128, 'lon': -74.006}",
+      "velocidad": 750,
+      "altitud": 10000,
+      "estado": "operativo"
+    }
+  }
+}
+{
+  "timestamp": "2025-02-25 13:04:34",
+  "header": "Sys answer",
+  "message": {
+    "args": [
+      {
+        "name": "Mensaje 1",
+        "fields": {
+          "tipo": "J",
+          "identificador": "A123",
+          "timestamp": "2025-02-24T14:00:00Z",
+          "posicion": "{'lat': 40.7128, 'lon': -74.006}",
+          "velocidad": 750,
+          "altitud": 10000,
+          "estado": "operativo"
+        }
+      }
+    ],
+    "kwargs": {}
+  }
+}
+{
+  "timestamp": "2025-02-25 13:05:13",
+  "header": "Stimulus message",
+  "message": {
+    "name": "Mensaje 1",
+    "fields": {
+      "tipo": "J",
+      "identificador": "A123",
+      "timestamp": "2025-02-24T14:00:00Z",
+      "posicion": "{'lat': 40.7128, 'lon': -74.006}",
+      "velocidad": 750,
+      "altitud": 10000,
+      "estado": "operativo"
+    }
+  }
+}
+{
+  "timestamp": "2025-02-25 13:05:13",
+  "header": "Sys answer",
+  "message": {
+    "args": [
+      {
+        "name": "Mensaje 1",
+        "fields": {
+          "tipo": "J",
+          "identificador": "A123",
+          "timestamp": "2025-02-24T14:00:00Z",
+          "posicion": "{'lat': 40.7128, 'lon': -74.006}",
+          "velocidad": 750,
+          "altitud": 10000,
+          "estado": "operativo"
+        }
+      }
+    ],
+    "kwargs": {}
+  }
+}
+{
+  "timestamp": "2025-02-25 13:05:24",
+  "header": "Stimulus message",
+  "message": {
+    "name": "Mensaje 1",
+    "fields": {
+      "tipo": "J",
+      "identificador": "A123",
+      "timestamp": "2025-02-24T14:00:00Z",
+      "posicion": "{'lat': 40.7128, 'lon': -74.006}",
+      "velocidad": 750,
+      "altitud": 10000,
+      "estado": "operativo"
+    }
+  }
+}
+{
+  "timestamp": "2025-02-25 13:05:24",
+  "header": "Sys answer",
+  "message": {
+    "args": [
+      {
+        "name": "Mensaje 1",
+        "fields": {
+          "tipo": "J",
+          "identificador": "A123",
+          "timestamp": "2025-02-24T14:00:00Z",
+          "posicion": "{'lat': 40.7128, 'lon': -74.006}",
+          "velocidad": 750,
+          "altitud": 10000,
+          "estado": "operativo"
+        }
+      }
+    ],
+    "kwargs": {}
+  }
+}

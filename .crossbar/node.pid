@@ -1,17 +1,17 @@
 {
-    "pid": 34840, 
+    "pid": 24024, 
     "argv": [
         "crossbar", 
         "start", 
-        "--cbdir", 
-        "C:\\Users\\ededi\\Documents\\PROYECTOS\\WAMP\\.crossbar"
+        "--loglevel", 
+        "debug"
     ], 
     "options": {
         "debug_lifecycle": false, 
         "debug_programflow": false, 
         "command": "start", 
         "color": false, 
-        "loglevel": "info", 
+        "loglevel": "debug", 
         "logformat": "standard", 
         "logdir": null, 
         "logtofile": false, 
