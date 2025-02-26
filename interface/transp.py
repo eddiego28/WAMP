@@ -460,7 +460,7 @@ class MainWindow(QMainWindow):
     
     def initUI(self):
         tabs = QTabWidget()
-        self.publisherTab = PublisherTab(self)
+        self.publisherTab = PublisherTab(self) 
         self.subscriberTab = SubscriberTab(self)
         tabs.addTab(self.publisherTab, "Publicador")
         tabs.addTab(self.subscriberTab, "Subscriptor")
