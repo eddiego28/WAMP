@@ -8,7 +8,6 @@ from PyQt5.QtCore import Qt, pyqtSlot, QTimer
 from PyQt5.QtGui import QTextCursor
 import logging
 
-# Configuración de logging
 logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
 
 def format_json_as_table(msg):
@@ -45,6 +44,7 @@ class PublisherEditorWidget(QWidget):
     
     def initUI(self):
         layout = QVBoxLayout()
+        # Selección del modo de edición
         modeLayout = QHBoxLayout()
         modeLayout.addWidget(QLabel("Editar en:"))
         self.editModeSelector = QComboBox()
@@ -53,10 +53,12 @@ class PublisherEditorWidget(QWidget):
         modeLayout.addWidget(self.editModeSelector)
         layout.addLayout(modeLayout)
         
+        # Botón para importar JSON (único, arriba)
         self.importButton = QPushButton("Cargar JSON desde Archivo")
         self.importButton.clicked.connect(self.loadJSONFromFile)
         layout.addWidget(self.importButton)
         
+        # Controles comunes de "Modo de envío" y "Tiempo"
         commonLayout = QHBoxLayout()
         commonLayout.addWidget(QLabel("Modo de envío:"))
         self.commonModeCombo = QComboBox()
@@ -67,10 +69,11 @@ class PublisherEditorWidget(QWidget):
         commonLayout.addWidget(self.commonTimeEdit)
         layout.addLayout(commonLayout)
         
+        # Área de contenido: se muestra el formulario dinámico o el editor JSON según se seleccione
         self.dynamicWidget = DynamicPublisherMessageForm(parent=self)
         self.jsonEditor = QTextEdit()
         self.jsonEditor.setMinimumSize(600, 400)
-        self.jsonEditor.hide()
+        self.jsonEditor.hide()  # Inicia en "Formulario Dinámico"
         layout.addWidget(self.dynamicWidget)
         layout.addWidget(self.jsonEditor)
         
@@ -94,7 +97,10 @@ class PublisherEditorWidget(QWidget):
         try:
             with open(filepath, "r", encoding="utf-8") as f:
                 data = json.load(f)
+            # Cargamos el JSON en el editor de JSON
             self.jsonEditor.setPlainText(json.dumps(data, indent=2, ensure_ascii=False))
+            # Y construimos el formulario dinámico con el mismo JSON
+            self.dynamicWidget.build_form(data)
         except Exception as e:
             QMessageBox.critical(self, "Error", f"No se pudo cargar el JSON:\n{e}")
     
@@ -113,21 +119,8 @@ class PublisherEditorWidget(QWidget):
 class DynamicPublisherMessageForm(QGroupBox):
     def __init__(self, default_json=None, parent=None):
         super().__init__("Mensaje (JSON dinámico)", parent)
-        # Si no se proporciona JSON, se inicializa con un ejemplo complejo
-        if default_json is None:
-            self.default_json = {
-                "config": {
-                    "param1": "valor1",
-                    "param2": 123,
-                    "detalles": {
-                        "subparam1": "dato1",
-                        "subparam2": [1, 2, 3]
-                    }
-                },
-                "lista": ["item1", "item2", "item3"]
-            }
-        else:
-            self.default_json = default_json
+        # Iniciamos con un diccionario vacío (se llenará al importar)
+        self.default_json = default_json if default_json is not None else {}
         self.initUI()
     
     def initUI(self):
@@ -142,23 +135,27 @@ class DynamicPublisherMessageForm(QGroupBox):
         layout.addWidget(QLabel("Campos a editar:"))
         layout.addWidget(self.formArea)
         self.setLayout(layout)
+        # Si hay datos importados, se construye el formulario; de lo contrario, se muestra vacío
         self.build_form(self.default_json)
     
     def build_form(self, data):
-        # Limpia el formulario antes de construirlo
+        # Limpia el formulario
         while self.formLayout.count():
             child = self.formLayout.takeAt(0)
             if child.widget():
                 child.widget().deleteLater()
-        self._build_form_rec(data, self.formLayout)
+        if data:
+            self._build_form_rec(data, self.formLayout, indent=0)
+        else:
+            # Si no hay datos, mostrar un mensaje
+            self.formLayout.addRow(QLabel("No hay datos importados"))
     
     def _build_form_rec(self, data, layout, indent=0):
-        # Si se desea, se puede usar el parámetro indent para modificar la apariencia (aumentando el margen)
+        # Se utiliza el parámetro indent para aplicar márgenes (indentación)
         if isinstance(data, dict):
             for key, value in data.items():
                 if isinstance(value, dict):
                     group = QGroupBox(key)
-                    # Aplicamos un estilo para indentarlo (aumentar margen izquierdo)
                     group.setStyleSheet(f"margin-left: {indent * 20}px;")
                     group_layout = QFormLayout()
                     group.setLayout(group_layout)
@@ -166,8 +163,8 @@ class DynamicPublisherMessageForm(QGroupBox):
                     self._build_form_rec(value, group_layout, indent + 1)
                 elif isinstance(value, list):
                     te = QTextEdit()
-                    te.setPlainText(json.dumps(value, indent=2, ensure_ascii=False))
                     te.setStyleSheet(f"margin-left: {indent * 20}px;")
+                    te.setPlainText(json.dumps(value, indent=2, ensure_ascii=False))
                     layout.addRow(QLabel(key), te)
                 else:
                     le = QLineEdit(str(value))
@@ -222,7 +219,6 @@ class MessageConfigWidget(QGroupBox):
     def initUI(self):
         self.contentWidget = QWidget()
         contentLayout = QVBoxLayout()
-        
         formLayout = QFormLayout()
         self.realmCombo = QComboBox()
         self.realmCombo.addItems(["default", "ADS.MIDSHMI"])
@@ -232,16 +228,13 @@ class MessageConfigWidget(QGroupBox):
         self.topicEdit = QLineEdit("com.ads.midshmi.topic")
         formLayout.addRow("Topic:", self.topicEdit)
         contentLayout.addLayout(formLayout)
-        
         self.editorWidget = PublisherEditorWidget(parent=self)
         self.editorWidget.commonModeCombo.currentTextChanged.connect(self.updateSendButtonState)
         contentLayout.addWidget(self.editorWidget)
-        
         self.sendButton = QPushButton("Enviar")
         self.sendButton.clicked.connect(self.sendMessage)
         self.sendButton.setEnabled(self.editorWidget.commonModeCombo.currentText() == "On-demand")
         contentLayout.addWidget(self.sendButton)
-        
         self.contentWidget.setLayout(contentLayout)
         mainLayout = QVBoxLayout()
         mainLayout.addWidget(self.contentWidget)
@@ -280,7 +273,8 @@ class MessageConfigWidget(QGroupBox):
         publish_time = datetime.datetime.now() + datetime.timedelta(seconds=delay)
         publish_time_str = publish_time.strftime("%Y-%m-%d %H:%M:%S")
         if hasattr(self.parent(), "logText"):
-            appendHtmlLog(self.parent().logText, f"<p><strong>[{datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}] Publicado: Topic: {topic}, Programado para: {publish_time_str}</strong></p>")
+            appendHtmlLog(self.parent().logText, 
+                f"<p><strong>[{datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}] Publicado: Topic: {topic}, Programado para: {publish_time_str}</strong></p>")
     
     def getConfig(self):
         return {
