@@ -1,37 +1,22 @@
 #!/usr/bin/env python3
-import os
-import json
-import asyncio
-import threading
-import logging
-import sys
-import datetime
+import os, sys, json, asyncio, threading, logging, datetime
 from autobahn.asyncio.wamp import ApplicationSession, ApplicationRunner
 
-# Para Windows: usar el selector de eventos
 if sys.platform.startswith('win'):
     asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
 
-# Configuración del logger para consola
-logging.basicConfig(
-    level=logging.DEBUG,
-    format='%(asctime)s - %(levelname)s - %(message)s',
-    handlers=[logging.StreamHandler()]
-)
-
-# Ruta fija para el log
-LOG_DIR = r"C:\Users\ededi\Documents\PROYECTOS\WAMP"
-LOG_FILENAME = os.path.join(LOG_DIR, "log" + datetime.datetime.now().strftime("%Y-%m-%d") + ".txt")
-
-# Configurar el logger exclusivo para mensajes:
+# Cada ejecución crea un archivo de log nuevo con fecha y hora hasta segundos.
+LOG_FILENAME = os.path.join(os.getcwd(), "log" + datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S") + ".txt")
 msgLogger = logging.getLogger("msgLogger")
 msgLogger.setLevel(logging.INFO)
-# Forzamos a quitar cualquier handler existente y agregamos el FileHandler deseado:
 for handler in msgLogger.handlers[:]:
     msgLogger.removeHandler(handler)
-fh = logging.FileHandler(LOG_FILENAME, encoding="utf-8")
-fh.setFormatter(logging.Formatter("%(message)s"))
-msgLogger.addHandler(fh)
+fileHandler = logging.FileHandler(LOG_FILENAME, encoding="utf-8")
+fileHandler.setFormatter(logging.Formatter("%(message)s"))
+msgLogger.addHandler(fileHandler)
+consoleHandler = logging.StreamHandler()
+consoleHandler.setFormatter(logging.Formatter("%(asctime)s - %(levelname)s - %(message)s"))
+msgLogger.addHandler(consoleHandler)
 
 global_session = None
 global_loop = None
@@ -67,13 +52,6 @@ def start_publisher(url, realm, topic):
     threading.Thread(target=run, daemon=True).start()
 
 def send_message_now(topic, message, delay=0):
-    """
-    Envía 'message' en 'topic' con retraso 'delay' (segundos).
-    Registra en el log un único objeto JSON con:
-      - timestamp
-      - header: "Stimulus message"
-      - message
-    """
     global global_session, global_loop
     if global_session is None or global_loop is None:
         logging.error("Publicador: No hay sesión activa. Inicia el publicador primero.")
@@ -82,8 +60,9 @@ def send_message_now(topic, message, delay=0):
         if delay > 0:
             await asyncio.sleep(delay)
         global_session.publish(topic, message)
+        timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         log_entry = {
-            "timestamp": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+            "timestamp": timestamp,
             "header": "Stimulus message",
             "message": message
         }

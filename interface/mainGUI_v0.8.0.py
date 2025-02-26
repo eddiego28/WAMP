@@ -7,7 +7,7 @@ from PyQt5.QtCore import Qt, pyqtSlot
 from PyQt5.QtGui import QTextCursor
 import logging
 
-# Añadir la carpeta raíz del proyecto (asumiendo que mainGUI2.py está en interface/)
+# Añadir la carpeta raíz del proyecto al sys.path
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 from publisher.pubGUI import start_publisher, send_message_now
@@ -33,7 +33,7 @@ def appendHtmlLog(widget, html):
     widget.setTextCursor(cursor)
     widget.ensureCursorVisible()
 
-# ---------- Pestaña Publicador (configuración por campos) ----------
+# ---------- Pestaña Publicador ----------
 class PublisherMessageForm(QGroupBox):
     def __init__(self, message_data, parent=None):
         super().__init__(message_data.get("name", "Mensaje"), parent)
@@ -218,53 +218,6 @@ class PublisherTab(QWidget):
         timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         appendHtmlLog(self.logText, f"<p>[{timestamp}] Stimulus message:<br/>{formatted}</p>")
 
-# ---------- Pestaña JSON Publisher ----------
-class JSONPublisherTab(QWidget):
-    def __init__(self, parent=None):
-        super().__init__(parent)
-        self.initUI()
-    
-    def initUI(self):
-        layout = QVBoxLayout()
-        layout.addWidget(QLabel("Ingrese el JSON a enviar:"))
-        self.jsonEditor = QTextEdit()
-        layout.addWidget(self.jsonEditor)
-        
-        self.previewButton = QPushButton("Previsualizar")
-        self.previewButton.clicked.connect(self.previewJSON)
-        layout.addWidget(self.previewButton)
-        
-        layout.addWidget(QLabel("Previsualización:"))
-        self.previewArea = QTextEdit()
-        self.previewArea.setReadOnly(True)
-        layout.addWidget(self.previewArea)
-        
-        self.sendButton = QPushButton("Enviar JSON")
-        self.sendButton.clicked.connect(self.sendJSON)
-        layout.addWidget(self.sendButton)
-        
-        self.setLayout(layout)
-    
-    def previewJSON(self):
-        text = self.jsonEditor.toPlainText()
-        try:
-            data = json.loads(text)
-            formatted = json.dumps(data, indent=2, ensure_ascii=False)
-            self.previewArea.setPlainText(formatted)
-        except Exception as e:
-            self.previewArea.setPlainText(f"Error: JSON inválido ({e})")
-    
-    def sendJSON(self):
-        text = self.jsonEditor.toPlainText()
-        try:
-            data = json.loads(text)
-            # Se asume un topic fijo o configurado en la interfaz; aquí usamos uno fijo
-            topic = "com.ads.midshmi.topic"
-            send_message_now(topic, data, delay=0)
-            QMessageBox.information(self, "Info", "Mensaje enviado.")
-        except Exception as e:
-            QMessageBox.critical(self, "Error", f"El JSON es inválido: {e}")
-
 # ---------- Pestaña Subscriptor ----------
 class SubscriberTab(QWidget):
     def __init__(self, parent=None):
@@ -279,7 +232,7 @@ class SubscriberTab(QWidget):
         self.realmCombo.addItems(["default", "ADS.MIDSHMI"])
         formLayout.addWidget(self.realmCombo)
         formLayout.addWidget(QLabel("Router URL:"))
-        self.urlEdit = QLineEdit("ws://127.0.0.1:60001/ws")
+        self.urlEdit = QLineEdit("ws://127.0.0.1:60001")
         formLayout.addWidget(self.urlEdit)
         layout.addLayout(formLayout)
         
@@ -313,7 +266,6 @@ class SubscriberTab(QWidget):
         self.setLayout(layout)
     
     def loadTopics(self):
-        from PyQt5.QtWidgets import QFileDialog
         filepath, _ = QFileDialog.getOpenFileName(self, "Selecciona JSON de Tópicos", "", "JSON Files (*.json);;All Files (*)")
         if not filepath:
             return
@@ -329,7 +281,8 @@ class SubscriberTab(QWidget):
             topics = data.get("topics", [])
         self.topicsList.clear()
         for topic in topics:
-            self.topicsList.addItem(topic)
+            item = QListWidgetItem(topic)
+            self.topicsList.addItem(item)
     
     def addTopic(self):
         new_topic = self.newTopicEdit.text().strip()
@@ -341,11 +294,11 @@ class SubscriberTab(QWidget):
         from subscriber.subGUI import start_subscriber
         realm = self.realmCombo.currentText()
         url = self.urlEdit.text().strip()
-        selected = self.topicsList.selectedItems()
-        if not selected:
+        selected_items = self.topicsList.selectedItems()
+        if not selected_items:
             QMessageBox.critical(self, "Error", "Selecciona al menos un tópico.")
             return
-        topics = [item.text() for item in selected]
+        topics = [item.text() for item in selected_items]
         start_subscriber(url, realm, topics, on_message_callback=self.onMessageArrived)
         timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         appendHtmlLog(self.logText, f"<p>[{timestamp}] Subscriptor iniciado en realm '{realm}' para tópicos: {topics}</p>")
@@ -371,10 +324,8 @@ class MainWindow(QMainWindow):
     def initUI(self):
         tabs = QTabWidget()
         self.publisherTab = PublisherTab(self)
-        self.jsonPublisherTab = JSONPublisherTab(self)
         self.subscriberTab = SubscriberTab(self)
         tabs.addTab(self.publisherTab, "Publicador")
-        tabs.addTab(self.jsonPublisherTab, "JSON Publisher")
         tabs.addTab(self.subscriberTab, "Subscriptor")
         self.setCentralWidget(tabs)
 

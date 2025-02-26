@@ -1,0 +1,496 @@
+{
+  "timestamp": "2025-02-26 00:57:02",
+  "header": "Stimulus message",
+  "message": {
+    "EP": {
+      "common": {
+        "palabra1": {
+          "campo1": "valor1",
+          "campo2": "valor2",
+          "detalles": {
+            "subcampo1": "dato1",
+            "subcampo2": 123,
+            "subcampo3": [
+              "item1",
+              "item2",
+              "item3"
+            ]
+          }
+        },
+        "palabra2": {
+          "campo3": "valor3",
+          "campo4": "valor4",
+          "metadatos": {
+            "creador": "usuario1",
+            "fecha": "2025-02-25",
+            "estado": "activo"
+          }
+        },
+        "palabra3": {
+          "campo5": "valor5",
+          "campo6": "valor6",
+          "propiedades": {
+            "peso": 75.3,
+            "altura": 1.82,
+            "colores": [
+              "rojo",
+              "verde",
+              "azul"
+            ]
+          }
+        }
+      },
+      "E0": {
+        "nivel1": {
+          "subnivel1": {
+            "campo7": "valor7",
+            "campo8": "valor8",
+            "configuracion": {
+              "modo": "auto",
+              "reintentos": 5,
+              "parametros": {
+                "umbral": 0.8,
+                "ajuste": "medio",
+                "historial": [
+                  {
+                    "fecha": "2025-01-01",
+                    "evento": "inicio"
+                  },
+                  {
+                    "fecha": "2025-02-15",
+                    "evento": "ajuste"
+                  },
+                  {
+                    "fecha": "2025-02-25",
+                    "evento": "validación"
+                  }
+                ]
+              }
+            }
+          },
+          "subnivel2": {
+            "campo9": "valor9",
+            "campo10": "valor10",
+            "usuarios": [
+              {
+                "id": 1,
+                "nombre": "Carlos",
+                "rol": "admin"
+              },
+              {
+                "id": 2,
+                "nombre": "Ana",
+                "rol": "editor"
+              },
+              {
+                "id": 3,
+                "nombre": "Luis",
+                "rol": "viewer"
+              }
+            ]
+          }
+        },
+        "nivel2": {
+          "subnivel3": {
+            "campo11": "valor11",
+            "campo12": "valor12",
+            "estadisticas": {
+              "visitas": 1200,
+              "interacciones": 320,
+              "promedio": {
+                "tiempo": "5m 30s",
+                "clics": 15.4
+              }
+            }
+          }
+        },
+        "config_global": {
+          "version": "1.2.3",
+          "actualizado": "2025-02-25T14:00:00Z",
+          "parametros_extra": {
+            "latencia": 250,
+            "modo_seguro": true,
+            "capacidad": {
+              "maxima": 5000,
+              "actual": 3120
+            }
+          }
+        }
+      }
+    }
+  }
+}
+{
+  "timestamp": "2025-02-26 00:57:02",
+  "header": "Sys answer",
+  "message": {
+    "message": [
+      {
+        "EP": {
+          "common": {
+            "palabra1": {
+              "campo1": "valor1",
+              "campo2": "valor2",
+              "detalles": {
+                "subcampo1": "dato1",
+                "subcampo2": 123,
+                "subcampo3": [
+                  "item1",
+                  "item2",
+                  "item3"
+                ]
+              }
+            },
+            "palabra2": {
+              "campo3": "valor3",
+              "campo4": "valor4",
+              "metadatos": {
+                "creador": "usuario1",
+                "fecha": "2025-02-25",
+                "estado": "activo"
+              }
+            },
+            "palabra3": {
+              "campo5": "valor5",
+              "campo6": "valor6",
+              "propiedades": {
+                "peso": 75.3,
+                "altura": 1.82,
+                "colores": [
+                  "rojo",
+                  "verde",
+                  "azul"
+                ]
+              }
+            }
+          },
+          "E0": {
+            "nivel1": {
+              "subnivel1": {
+                "campo7": "valor7",
+                "campo8": "valor8",
+                "configuracion": {
+                  "modo": "auto",
+                  "reintentos": 5,
+                  "parametros": {
+                    "umbral": 0.8,
+                    "ajuste": "medio",
+                    "historial": [
+                      {
+                        "fecha": "2025-01-01",
+                        "evento": "inicio"
+                      },
+                      {
+                        "fecha": "2025-02-15",
+                        "evento": "ajuste"
+                      },
+                      {
+                        "fecha": "2025-02-25",
+                        "evento": "validación"
+                      }
+                    ]
+                  }
+                }
+              },
+              "subnivel2": {
+                "campo9": "valor9",
+                "campo10": "valor10",
+                "usuarios": [
+                  {
+                    "id": 1,
+                    "nombre": "Carlos",
+                    "rol": "admin"
+                  },
+                  {
+                    "id": 2,
+                    "nombre": "Ana",
+                    "rol": "editor"
+                  },
+                  {
+                    "id": 3,
+                    "nombre": "Luis",
+                    "rol": "viewer"
+                  }
+                ]
+              }
+            },
+            "nivel2": {
+              "subnivel3": {
+                "campo11": "valor11",
+                "campo12": "valor12",
+                "estadisticas": {
+                  "visitas": 1200,
+                  "interacciones": 320,
+                  "promedio": {
+                    "tiempo": "5m 30s",
+                    "clics": 15.4
+                  }
+                }
+              }
+            },
+            "config_global": {
+              "version": "1.2.3",
+              "actualizado": "2025-02-25T14:00:00Z",
+              "parametros_extra": {
+                "latencia": 250,
+                "modo_seguro": true,
+                "capacidad": {
+                  "maxima": 5000,
+                  "actual": 3120
+                }
+              }
+            }
+          }
+        }
+      }
+    ]
+  }
+}
+{
+  "timestamp": "2025-02-26 00:57:08",
+  "header": "Stimulus message",
+  "message": {
+    "EP": {
+      "common": {
+        "palabra1": {
+          "campo1": "valor1",
+          "campo2": "valor2",
+          "detalles": {
+            "subcampo1": "dato1",
+            "subcampo2": 123,
+            "subcampo3": [
+              "item1",
+              "item2",
+              "item3"
+            ]
+          }
+        },
+        "palabra2": {
+          "campo3": "valor3",
+          "campo4": "valor4",
+          "metadatos": {
+            "creador": "usuario1",
+            "fecha": "2025-02-25",
+            "estado": "activo"
+          }
+        },
+        "palabra3": {
+          "campo5": "valor5",
+          "campo6": "valor6",
+          "propiedades": {
+            "peso": 75.3,
+            "altura": 1.82,
+            "colores": [
+              "rojo",
+              "verde",
+              "azul"
+            ]
+          }
+        }
+      },
+      "E0": {
+        "nivel1": {
+          "subnivel1": {
+            "campo7": "valor7",
+            "campo8": "valor8",
+            "configuracion": {
+              "modo": "auto",
+              "reintentos": 5,
+              "parametros": {
+                "umbral": 0.8,
+                "ajuste": "medio",
+                "historial": [
+                  {
+                    "fecha": "2025-01-01",
+                    "evento": "inicio"
+                  },
+                  {
+                    "fecha": "2025-02-15",
+                    "evento": "ajuste"
+                  },
+                  {
+                    "fecha": "2025-02-25",
+                    "evento": "validación"
+                  }
+                ]
+              }
+            }
+          },
+          "subnivel2": {
+            "campo9": "valor9",
+            "campo10": "valor10",
+            "usuarios": [
+              {
+                "id": 1,
+                "nombre": "Carlos",
+                "rol": "admin"
+              },
+              {
+                "id": 2,
+                "nombre": "Ana",
+                "rol": "editor"
+              },
+              {
+                "id": 3,
+                "nombre": "Luis",
+                "rol": "viewer"
+              }
+            ]
+          }
+        },
+        "nivel2": {
+          "subnivel3": {
+            "campo11": "valor11",
+            "campo12": "valor12",
+            "estadisticas": {
+              "visitas": 1200,
+              "interacciones": 320,
+              "promedio": {
+                "tiempo": "5m 30s",
+                "clics": 15.4
+              }
+            }
+          }
+        },
+        "config_global": {
+          "version": "1.2.3",
+          "actualizado": "2025-02-25T14:00:00Z",
+          "parametros_extra": {
+            "latencia": 250,
+            "modo_seguro": true,
+            "capacidad": {
+              "maxima": 5000,
+              "actual": 3120
+            }
+          }
+        }
+      }
+    }
+  }
+}
+{
+  "timestamp": "2025-02-26 00:57:08",
+  "header": "Sys answer",
+  "message": {
+    "message": [
+      {
+        "EP": {
+          "common": {
+            "palabra1": {
+              "campo1": "valor1",
+              "campo2": "valor2",
+              "detalles": {
+                "subcampo1": "dato1",
+                "subcampo2": 123,
+                "subcampo3": [
+                  "item1",
+                  "item2",
+                  "item3"
+                ]
+              }
+            },
+            "palabra2": {
+              "campo3": "valor3",
+              "campo4": "valor4",
+              "metadatos": {
+                "creador": "usuario1",
+                "fecha": "2025-02-25",
+                "estado": "activo"
+              }
+            },
+            "palabra3": {
+              "campo5": "valor5",
+              "campo6": "valor6",
+              "propiedades": {
+                "peso": 75.3,
+                "altura": 1.82,
+                "colores": [
+                  "rojo",
+                  "verde",
+                  "azul"
+                ]
+              }
+            }
+          },
+          "E0": {
+            "nivel1": {
+              "subnivel1": {
+                "campo7": "valor7",
+                "campo8": "valor8",
+                "configuracion": {
+                  "modo": "auto",
+                  "reintentos": 5,
+                  "parametros": {
+                    "umbral": 0.8,
+                    "ajuste": "medio",
+                    "historial": [
+                      {
+                        "fecha": "2025-01-01",
+                        "evento": "inicio"
+                      },
+                      {
+                        "fecha": "2025-02-15",
+                        "evento": "ajuste"
+                      },
+                      {
+                        "fecha": "2025-02-25",
+                        "evento": "validación"
+                      }
+                    ]
+                  }
+                }
+              },
+              "subnivel2": {
+                "campo9": "valor9",
+                "campo10": "valor10",
+                "usuarios": [
+                  {
+                    "id": 1,
+                    "nombre": "Carlos",
+                    "rol": "admin"
+                  },
+                  {
+                    "id": 2,
+                    "nombre": "Ana",
+                    "rol": "editor"
+                  },
+                  {
+                    "id": 3,
+                    "nombre": "Luis",
+                    "rol": "viewer"
+                  }
+                ]
+              }
+            },
+            "nivel2": {
+              "subnivel3": {
+                "campo11": "valor11",
+                "campo12": "valor12",
+                "estadisticas": {
+                  "visitas": 1200,
+                  "interacciones": 320,
+                  "promedio": {
+                    "tiempo": "5m 30s",
+                    "clics": 15.4
+                  }
+                }
+              }
+            },
+            "config_global": {
+              "version": "1.2.3",
+              "actualizado": "2025-02-25T14:00:00Z",
+              "parametros_extra": {
+                "latencia": 250,
+                "modo_seguro": true,
+                "capacidad": {
+                  "maxima": 5000,
+                  "actual": 3120
+                }
+              }
+            }
+          }
+        }
+      }
+    ]
+  }
+}
